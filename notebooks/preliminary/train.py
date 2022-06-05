@@ -19,6 +19,7 @@ transform = transforms.Compose(
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 # CIFAR10: 60000 32x32 color images in 10 classes, with 6000 images per class
+# batch labels -- images values -- file name
 train_dataset = torchvision.datasets.CIFAR10(root='./data', train=True,
                                         download=True, transform=transform)
 

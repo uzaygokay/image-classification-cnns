@@ -1,4 +1,5 @@
-image_classification
+This project aims to classify images from CIFAR-10 dataset by using various CNN architectures.
+
 ==============================
 
 A short description of the project.

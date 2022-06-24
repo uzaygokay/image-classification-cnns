@@ -3,9 +3,6 @@ import torch
 from torchvision.datasets import CIFAR10
 from torch.utils import DataLoader, random_split
 import torchvision.transforms as transforms
-import matplotlib.pyplot as plt
-import numpy as np
-
 from pytorch_lightning import LightningDataModule
 
 #%% Device configuration

@@ -18,7 +18,7 @@ def get_args():
     )
 
     parser.add_argument('-num_workers', type=int, help= 'Number of workers',
-        default=2
+        default=4
     )
 
     parser.add_argument('-max_epochs', type=int, help= 'Number of workers',
@@ -41,3 +41,7 @@ def get_args():
     parser.add_argument('-dropout', type=float, help= 'Dropout rate',
         default=0.1
     )
+
+    args = parser.parse_args()
+
+    return args

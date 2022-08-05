@@ -1,9 +1,9 @@
-from pytorch_ligthning.callbacks.progress.rich_progress import RichProgressBar
-from pythorch_lightning import Trainer
+from pytorch_lightning.callbacks.progress.rich_progress import RichProgressBar
+from pytorch_lightning import Trainer
 
 from custom_logger import get_custom_logger
 from arguments import get_args
-from datamodule import CIFAR10
+from datamodule import CIFAR10_dm
 from model import ConvModel
 
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     logger = get_custom_logger(__name__)
 
     logger.info('Init Datamodule')
-    dm = CIFAR10(
+    dm = CIFAR10_dm(
         data_dir=args.data_dir,
         batch_size= args.batch_size,
         num_workers=args.num_workers
@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     logger.info('Init Trainer')
     trainer = Trainer(
-        fast_dev_run = 3,
+        #fast_dev_run = 3,
         max_epochs = args.max_epochs,
         enable_progress_bar=True,
         callbacks=callbacks,

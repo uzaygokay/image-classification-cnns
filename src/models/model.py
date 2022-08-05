@@ -48,10 +48,10 @@ class ConvModel(LightningModule) :
         self.model = nn.Sequential(
             nn.Flatten(),
             nn.Linear(channels * width * height, self.hidden_size),
-            nn.RELU(),
+            nn.ReLU(),
             nn.Dropout(self.dropout),
             nn.Linear(self.hidden_size, self.hidden_size),
-            nn.RELU(),
+            nn.ReLU(),
             nn.Dropout(self.dropout),
             nn.Linear(self.hidden_size, self.num_classes)
         )
@@ -72,6 +72,8 @@ class ConvModel(LightningModule) :
         
         #log loss
         self.log('train_loss', loss, on_step=False, on_epoch=True)
+
+        return loss
     
     def training_epoch_end(self, outputs):
         #compute the metrics and reset
@@ -91,7 +93,7 @@ class ConvModel(LightningModule) :
         self.valid_metrics.update(preds, y)
 
         #log loss
-        self.log('val_loss', loss, on_step=False, on_epoch=True)
+        self.log('val_loss', loss, prog_bar=True, on_step=False, on_epoch=True)
 
     def validation_epoch_end(self, outputs):
         #compute the metrics and reset
@@ -99,7 +101,7 @@ class ConvModel(LightningModule) :
         self.valid_metrics.reset()
 
         #log the metrics
-        self.log_dict(result, on_epoch=True)
+        self.log_dict(result, prog_bar=True, on_epoch=True)
 
     def test_step(self, batch, batch_idx):
         x,y = batch 
@@ -111,7 +113,7 @@ class ConvModel(LightningModule) :
         self.test_metrics.update(preds, y)
 
         #log loss
-        self.log('test_loss', loss, on_step=False, on_epoch=True)
+        self.log('test_loss', loss, prog_bar=True, on_step=False, on_epoch=True)
 
     def test_epoch_end(self, outputs):
         #compute the metrics and reset

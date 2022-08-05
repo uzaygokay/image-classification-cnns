@@ -1,6 +1,6 @@
 import logging
 
-def get_custom_logger(name: str, level=http://logging.INFO):
+def get_custom_logger(name: str, level=logging.INFO):
     # create formatter
     formatter = logging.Formatter('[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d :: %(funcName)20s()} -  %(levelname)s - %(message)s')
 

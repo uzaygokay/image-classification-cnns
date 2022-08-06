@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     logger.info('Init Trainer')
     trainer = Trainer(
-        #fast_dev_run = 3,
+        fast_dev_run = 3,
         max_epochs = args.max_epochs,
         enable_progress_bar=True,
         callbacks=callbacks,
@@ -47,5 +47,5 @@ if __name__ == '__main__':
     logger.info('Run Trainer')
     trainer.fit(model,dm)
 
-    logger.info('Test the best model')
-    trainer.test(ckpt_path='best', datamodule=dm)
+    #logger.info('Test the best model')
+    #trainer.test(ckpt_path='best', datamodule=dm)

@@ -11,6 +11,8 @@ import numpy as np
 from pytorch_lightning import LightningModule
 from torchmetrics import MetricCollection, Accuracy, F1Score
 
+from alexnet import AlexNet
+from inceptionnet import InceptionModule
 #%% model class
 class ConvModel(LightningModule) :
     def __init__(self, channels, width, height, num_classes, hidden_size, learning_rate, weight_decay, dropout):
@@ -45,17 +47,26 @@ class ConvModel(LightningModule) :
 
 
         #model
-        self.model = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(channels * width * height, self.hidden_size),
-            nn.ReLU(),
-            nn.Dropout(self.dropout),
-            nn.Linear(self.hidden_size, self.hidden_size),
-            nn.ReLU(),
-            nn.Dropout(self.dropout),
-            nn.Linear(self.hidden_size, self.num_classes)
-        )
+        #self.model = nn.Sequential(
+        #    nn.Flatten(),
+        #    nn.Linear(channels * width * height, self.hidden_size),
+        #    nn.ReLU(),
+        #    nn.Dropout(self.dropout),
+        #    nn.Linear(self.hidden_size, self.hidden_size),
+        #    nn.ReLU(),
+        #    nn.Dropout(self.dropout),
+        #    nn.Linear(self.hidden_size, self.num_classes)
+        #)
+
+        #alexnet
+        self.model = AlexNet(num_classes=self.num_classes, dropout=self.dropout)
         
+        #inceptionnet
+        #self.model = InceptionModule(in_channels=3,out_channels=32)
+
+        #googlenet pretrained
+        #model = torch.hub.load('pytorch/vision:v0.10.0', 'googlenet', pretrained=True)
+
     def forward(self, x):
         #call model and apply softmax
         x = self.model(x)

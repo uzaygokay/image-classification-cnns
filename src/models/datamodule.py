@@ -20,7 +20,8 @@ class CIFAR10_dm(LightningDataModule) :
         # dataset has PILImage images of range [0, 1]. 
         # We transform them to Tensors of normalized range [-1, 1]
         self.transform = transforms.Compose(
-            [
+            [   
+                transforms.Resize(224),
                 transforms.ToTensor(),
                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
             ]

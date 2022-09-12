@@ -3,7 +3,13 @@ Image classification with CNNS
 
 This project aims to classify images from CIFAR-10 dataset by using various CNN architectures with Pytorch Lightning.
 
-To use the code, clone the repo and 
+### To use the code ###
+1) Clone the repo
+2) Setup a virtual env by using environment.yaml
+3) Change directory to src/models/
+4) Run the train_model.py file
+
+* Modify model name according to your choice
 
 Project Organization
 ------------

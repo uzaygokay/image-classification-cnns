@@ -51,11 +51,17 @@ Project Organization
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
+    │   │   ├── arguments.py       <- Hyperparameters and arguments for model.
+    │   │   ├── datamodule.py      <- Reads, transform and loads the data.
+    │   │   ├── logger.py          <- Logger to track the run.
+    │   │   ├── model.py           <- Script for image classifier.
+    │   │   ├── alexnet.py         <- Implementation of AlexNet.
+    │   │   └── train_model.py     <- Script to train models.
+    │   │
     │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
+    │
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 

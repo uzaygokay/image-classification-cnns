@@ -3,6 +3,8 @@ Image classification with CNNS
 
 This project aims to classify images from CIFAR-10 dataset by using various CNN architectures with Pytorch Lightning.
 
+To use the code, clone the repo and 
+
 Project Organization
 ------------
 

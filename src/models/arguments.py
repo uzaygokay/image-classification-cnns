@@ -41,6 +41,10 @@ def get_args():
     parser.add_argument('-dropout', type=float, help= 'Dropout rate',
         default=0.1
     )
+    
+    parser.add_argument("-gpus", type = int, help = "Number of GPUs", 
+        default = torch.cuda.device_count()
+    )
 
     args = parser.parse_args()
 

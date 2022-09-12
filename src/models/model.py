@@ -12,7 +12,7 @@ from pytorch_lightning import LightningModule
 from torchmetrics import MetricCollection, Accuracy, F1Score
 
 from alexnet import AlexNet
-from inceptionnet import InceptionModule
+
 #%% model class
 class ConvModel(LightningModule) :
     def __init__(self, channels, width, height, num_classes, hidden_size, learning_rate, weight_decay, dropout):
@@ -45,19 +45,6 @@ class ConvModel(LightningModule) :
         self.valid_metrics = metrics.clone(prefix='val_')
         self.test_metrics = metrics.clone(prefix='test_')
 
-
-        #model
-        #self.model = nn.Sequential(
-        #    nn.Flatten(),
-        #    nn.Linear(channels * width * height, self.hidden_size),
-        #    nn.ReLU(),
-        #    nn.Dropout(self.dropout),
-        #    nn.Linear(self.hidden_size, self.hidden_size),
-        #    nn.ReLU(),
-        #    nn.Dropout(self.dropout),
-        #    nn.Linear(self.hidden_size, self.num_classes)
-        #)
-
         #alexnet
         self.model = AlexNet(num_classes=self.num_classes, dropout=self.dropout)
         
@@ -65,7 +52,9 @@ class ConvModel(LightningModule) :
         #self.model = InceptionModule(in_channels=3,out_channels=32)
 
         #googlenet pretrained
-        #model = torch.hub.load('pytorch/vision:v0.10.0', 'googlenet', pretrained=True)
+        #self.model = torch.hub.load('pytorch/vision:v0.10.0', 'googlenet', pretrained=True)
+        #resnet 50
+        #self.model = torch.hub.load("pytorch/vision", "resnet50", weights="IMAGENET1K_V2")
 
     def forward(self, x):
         #call model and apply softmax

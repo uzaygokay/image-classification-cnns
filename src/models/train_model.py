@@ -36,16 +36,19 @@ if __name__ == '__main__':
 
     logger.info('Init Trainer')
     trainer = Trainer(
-        fast_dev_run = 3,
+        #ast_dev_run = 3,
+        gpus=args.gpus,
+        accelerator="gpu" if args.gpus > 0 else "cpu",
         max_epochs = args.max_epochs,
         enable_progress_bar=True,
         callbacks=callbacks,
-        limit_train_batches =0.1,
-        limit_val_batches = 0.1
+        log_every_n_steps=1,
+        #limit_train_batches =0.1,
+        #limit_val_batches = 0.1
     )
 
     logger.info('Run Trainer')
     trainer.fit(model,dm)
 
-    #logger.info('Test the best model')
-    #trainer.test(ckpt_path='best', datamodule=dm)
+    logger.info('Test the best model')
+    trainer.test(ckpt_path='best', datamodule=dm)
